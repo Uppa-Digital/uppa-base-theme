@@ -1,8 +1,20 @@
 // =============================================================================
 // UPPA Base — Main Stylesheet Entry Point
 // =============================================================================
-// Import order matters: tokens must come first so every partial can consume
-// the custom properties they define.
+// Partials are @used in dependency order:
+//   1. tokens     — defines all CSS custom properties on :root
+//   2. reset      — browser default resets (depends on tokens for colours)
+//   3. typography — body, headings, inline elements
+//   4. layout     — page structure, container, grid regions
+//   5. navigation — menus, hamburger, skip link, breadcrumbs
+//   6. blocks     — Gutenberg core block overrides
+//
+// Sass @use ensures each module is evaluated exactly once regardless of how
+// many partials declare @use 'tokens'. The :root custom properties appear
+// once at the top of the compiled output.
+//
+// Child themes should NOT override selectors here. Override CSS custom
+// properties in :root from the child theme's style.css or a child Sass file.
 // =============================================================================
 
 @use 'tokens';
