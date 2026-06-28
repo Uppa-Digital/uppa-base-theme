@@ -1,24 +1,25 @@
 {
   "name": "uppa-base",
   "version": "1.0.0",
-  "description": "Build toolchain for UPPA Base WordPress parent theme",
+  "description": "A lightweight, hook-driven parent theme for agency-built WordPress sites.",
   "private": true,
   "scripts": {
-    "build": "npm run build:css && npm run build:js",
-    "build:css": "sass assets/css/src/main.scss assets/css/dist/main.css --style=expanded --load-path=. && npm run minify:css",
-    "build:js": "esbuild assets/js/src/navigation.js assets/js/src/skip-link-focus.js --bundle=false --outdir=assets/js/dist --minify --outbase=assets/js/src",
-    "minify:css": "cleancss -o assets/css/dist/main.min.css assets/css/dist/main.css",
-    "watch": "sass --watch assets/css/src/main.scss:assets/css/dist/main.css --load-path=.",
-    "lint:css": "stylelint assets/css/src/**/*.scss",
-    "lint:js": "eslint assets/js/src/**/*.js",
-    "lint:php": "composer run lint"
+    "build":       "npm run build:css && npm run build:js",
+    "build:css":   "sass assets/css/src/main.scss assets/css/dist/main.css --style=expanded && sass assets/css/src/main.scss assets/css/dist/main.min.css --style=compressed",
+    "build:js":    "esbuild assets/js/src/navigation.js assets/js/src/skip-link-focus.js --bundle --minify --outdir=assets/js/dist",
+    "watch":       "sass --watch assets/css/src/main.scss:assets/css/dist/main.css",
+    "lint:php":    "phpcs --standard=WordPress .",
+    "lint:js":     "eslint assets/js/src/",
+    "lint:css":    "stylelint assets/css/src/",
+    "lint":        "npm run lint:php && npm run lint:js && npm run lint:css",
+    "pot":         "wp i18n make-pot . languages/uppa-base.pot",
+    "zip":         "npm run build && node scripts/make-zip.js"
   },
   "devDependencies": {
-    "sass": "^1.77.0",
     "esbuild": "^0.21.0",
-    "clean-css-cli": "^5.6.3",
+    "eslint": "^9.0.0",
+    "sass": "^1.77.0",
     "stylelint": "^16.0.0",
-    "stylelint-config-standard-scss": "^13.0.0",
-    "eslint": "^9.0.0"
+    "stylelint-config-standard-scss": "^13.0.0"
   }
 }
