@@ -25,9 +25,9 @@
 	// Elements
 	// -------------------------------------------------------------------------
 
-	var toggle = document.querySelector( '.menu-toggle' );
-	var menu   = document.getElementById( 'primary-menu' );
-	var nav    = document.getElementById( 'site-navigation' );
+	const toggle = document.querySelector( '.menu-toggle' );
+	const menu   = document.getElementById( 'primary-menu' );
+	const nav    = document.getElementById( 'site-navigation' );
 
 	// Bail if the markup is not present (e.g. no primary menu assigned).
 	if ( ! toggle || ! menu ) {
@@ -39,7 +39,7 @@
 	// Excludes elements with tabindex="-1" and disabled form controls.
 	// -------------------------------------------------------------------------
 
-	var FOCUSABLE_SELECTOR = [
+	const FOCUSABLE_SELECTOR = [
 		'a[href]',
 		'button:not([disabled])',
 		'input:not([disabled])',
@@ -91,7 +91,7 @@
 
 		// Move focus to first menu item so keyboard users don't have to Tab
 		// through the rest of the page to reach the navigation.
-		var items = getFocusableItems();
+		const items = getFocusableItems();
 		if ( items.length ) {
 			items[ 0 ].focus();
 		}
@@ -147,9 +147,9 @@
 			return;
 		}
 
-		var items   = getFocusableItems();
-		var total   = items.length;
-		var active  = document.activeElement;
+		const items   = getFocusableItems();
+		const total   = items.length;
+		const active  = document.activeElement;
 
 		if ( 0 === total ) {
 			// Menu has no focusable children; keep focus on toggle.
@@ -158,8 +158,8 @@
 			return;
 		}
 
-		var first = items[ 0 ];
-		var last  = items[ total - 1 ];
+		const first = items[ 0 ];
+		const last  = items[ total - 1 ];
 
 		if ( event.shiftKey ) {
 			// Shift+Tab from the first item wraps to the last.
@@ -186,7 +186,7 @@
 		}
 
 		// nav may be null if the markup differs; fall back to menu + toggle.
-		var container = nav || menu;
+		const container = nav || menu;
 
 		if ( ! container.contains( event.target ) && event.target !== toggle ) {
 			closeMenu( false ); // Don't steal focus from wherever the user clicked.

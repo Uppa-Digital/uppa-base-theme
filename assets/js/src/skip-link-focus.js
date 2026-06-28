@@ -35,7 +35,7 @@
 	// Everything else (div, main, section, article …) does.
 	// -------------------------------------------------------------------------
 
-	var NATIVE_FOCUSABLE = /^(a|button|details|input|select|textarea)$/i;
+	const NATIVE_FOCUSABLE = /^(a|button|details|input|select|textarea)$/i;
 
 	/**
 	 * Returns true if the element receives focus natively without tabindex.
@@ -52,7 +52,7 @@
 	// (Most themes have one; this handles multiple gracefully.)
 	// -------------------------------------------------------------------------
 
-	var skipLinks = document.querySelectorAll( '.skip-link' );
+	const skipLinks = document.querySelectorAll( '.skip-link' );
 
 	if ( ! skipLinks.length ) {
 		return;
@@ -62,15 +62,15 @@
 
 		link.addEventListener( 'click', function ( event ) { // eslint-disable-line no-unused-vars
 
-			var href = link.getAttribute( 'href' );
+			const href = link.getAttribute( 'href' );
 
 			// Only process fragment URLs (e.g. "#main").
 			if ( ! href || '#' !== href.charAt( 0 ) ) {
 				return;
 			}
 
-			var targetId = href.slice( 1 );
-			var target   = document.getElementById( targetId );
+			const targetId = href.slice( 1 );
+			const target   = document.getElementById( targetId );
 
 			if ( ! target ) {
 				return;
@@ -81,7 +81,7 @@
 			// focusable, then clean up as soon as focus leaves.
 			// ----------------------------------------------------------------
 
-			var addedTabindex = false;
+			let addedTabindex = false;
 
 			if ( ! isNativelyFocusable( target ) && ! target.hasAttribute( 'tabindex' ) ) {
 				target.setAttribute( 'tabindex', '-1' );
