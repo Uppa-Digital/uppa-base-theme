@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npm run build:css && npm run build:js",
     "build:css": "sass assets/css/src/main.scss assets/css/dist/main.css --style=expanded && sass assets/css/src/main.scss assets/css/dist/main.min.css --style=compressed",
-    "build:js": "esbuild assets/js/src/navigation.js assets/js/src/skip-link-focus.js --bundle --minify --outdir=assets/js/dist",
+    "build:js": "esbuild assets/js/src/main.js --bundle --minify --outfile=assets/js/dist/main.min.js",
     "watch": "sass --watch assets/css/src/main.scss:assets/css/dist/main.css",
     "lint:php": "phpcs --standard=WordPress .",
     "lint:js": "eslint assets/js/src/",
