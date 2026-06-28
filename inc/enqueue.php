@@ -34,7 +34,7 @@ function uppa_base_enqueue_assets() {
 	// -------------------------------------------------------------------------
 	wp_enqueue_style(
 		'uppa-base-style',
-		UPPA_BASE_URI . '/assets/css/dist/main.min.css',
+		UPPA_URI . '/assets/css/dist/main.min.css',
 		array(),
 		UPPA_VERSION
 	);
@@ -64,7 +64,7 @@ function uppa_base_enqueue_assets() {
 	// -------------------------------------------------------------------------
 	wp_enqueue_script(
 		'uppa-base-scripts',
-		UPPA_BASE_URI . '/assets/js/dist/main.min.js',
+		UPPA_URI . '/assets/js/dist/main.min.js',
 		array(),
 		UPPA_VERSION,
 		true  // Load in footer.

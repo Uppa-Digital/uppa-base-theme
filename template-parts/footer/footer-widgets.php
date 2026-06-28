@@ -6,6 +6,8 @@
  * @since   1.0.0
  */
 
+defined( 'ABSPATH' ) || exit;
+
 if ( ! is_active_sidebar( 'footer-1' ) ) {
 	return;
 }
