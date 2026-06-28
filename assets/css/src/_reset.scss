@@ -1,0 +1,172 @@
+// =============================================================================
+// Reset / Normalise
+// =============================================================================
+// Modern CSS reset. No colours or spacing values are hardcoded here — any
+// values that are not structural browser-default resets are expressed as
+// var(--token) references defined in _tokens.scss.
+// =============================================================================
+
+@use 'tokens';
+
+// -----------------------------------------------------------------------------
+// Box model
+// -----------------------------------------------------------------------------
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+// -----------------------------------------------------------------------------
+// Margin / padding reset
+// Every element starts from zero; spacing is added intentionally in partials.
+// -----------------------------------------------------------------------------
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+// -----------------------------------------------------------------------------
+// Root / HTML
+// -----------------------------------------------------------------------------
+
+html {
+  // Prevent font-size inflation on mobile landscape after orientation change.
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+
+  // Smooth scrolling — disabled for users who prefer reduced motion below.
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important; // stylelint-disable-line declaration-no-important
+    animation-iteration-count: 1 !important; // stylelint-disable-line declaration-no-important
+    transition-duration: 0.01ms !important; // stylelint-disable-line declaration-no-important
+    scroll-behavior: auto !important; // stylelint-disable-line declaration-no-important
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Body
+// -----------------------------------------------------------------------------
+
+body {
+  min-height: 100vh;
+  line-height: 1.6;
+
+  // Sub-pixel font rendering on macOS WebKit.
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background-color: var(--color-surface);
+  color: var(--color-text);
+}
+
+// -----------------------------------------------------------------------------
+// Media elements
+// -----------------------------------------------------------------------------
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  // Prevents broken-image icon when no height is set.
+  height: auto;
+}
+
+// -----------------------------------------------------------------------------
+// Form elements
+// -----------------------------------------------------------------------------
+
+input,
+button,
+textarea,
+select {
+  // Inherit the document font instead of the browser default.
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+// -----------------------------------------------------------------------------
+// Text
+// -----------------------------------------------------------------------------
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  // Prevent long words from breaking layouts.
+  overflow-wrap: break-word;
+}
+
+ul,
+ol {
+  // List styles are set intentionally in _typography.scss; reset here.
+  list-style: none;
+}
+
+// -----------------------------------------------------------------------------
+// Links
+// -----------------------------------------------------------------------------
+
+a {
+  // Ensures underlines skip descenders for legibility.
+  text-decoration-skip-ink: auto;
+}
+
+// -----------------------------------------------------------------------------
+// Interactive / focus
+// -----------------------------------------------------------------------------
+
+// Remove the default focus ring in favour of the accessible :focus-visible
+// ring defined in _navigation.scss and _typography.scss.
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+// -----------------------------------------------------------------------------
+// Tables
+// -----------------------------------------------------------------------------
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+// -----------------------------------------------------------------------------
+// Hidden utility — used by screen-reader-text helpers
+// -----------------------------------------------------------------------------
+
+[hidden] {
+  display: none !important; // stylelint-disable-line declaration-no-important
+}

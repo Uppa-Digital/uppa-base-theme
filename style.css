@@ -1,0 +1,18 @@
+/*
+Theme Name:       UPPA Base
+Theme URI:        https://wordpress.org/themes/uppa-base/
+Author:           Upper Echelon Digital Services
+Author URI:       https://uppadigital.com
+Description:      A lightweight, hook-driven parent theme for agency-built WordPress sites.
+                  Minimal by design — structure, tokens, and accessibility baseline only.
+                  Extend with a child theme or the free uppa-core companion plugin.
+Version:          1.0.0
+Requires at least: 6.4
+Tested up to:      6.7
+Requires PHP:      8.1
+License:           GNU General Public License v2 or later
+License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain:       uppa-base
+Tags:              custom-menu, custom-logo, block-styles, wide-blocks, accessibility-ready,
+                   translation-ready, full-site-editing
+*/
