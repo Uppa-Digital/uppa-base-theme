@@ -3,6 +3,7 @@ name: Release
 
 on:
   push:
+    branches: [main]
     tags: ["v*"]
 
 jobs:
@@ -26,17 +27,20 @@ jobs:
       - name: Create release zip
         run: npm run zip
 
+      # The next two steps only run on tagged releases (v*), not on plain
+      # pushes to main. A merge to main builds and zips but does not publish.
       - name: Upload zip to GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
           files: release/uppa-base-*.zip
           generate_release_notes: true
 
       - name: Deploy to WordPress.org Theme SVN
-        # Only runs when SVN credentials are configured as repository secrets.
+        # Only runs on tagged releases when SVN credentials are configured.
         # The theme must be approved by WP.org before this step is useful.
         # themes.svn.wordpress.org is the correct host for themes (not plugins).
-        if: ${{ secrets.SVN_USERNAME != '' && secrets.SVN_PASSWORD != '' }}
+        if: startsWith(github.ref, 'refs/tags/v') && secrets.SVN_USERNAME != ''
         run: |
           VERSION="${GITHUB_REF_NAME#v}"
           SVN_URL="https://themes.svn.wordpress.org/uppa-base"
