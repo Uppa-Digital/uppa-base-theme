@@ -141,7 +141,7 @@ blockquote {
 // -----------------------------------------------------------------------------
 
 code {
-  font-family: 'SFMono-Regular', consolas, 'Liberation Mono', menlo, monospace;
+  font-family: SFMono-Regular, consolas, 'Liberation Mono', menlo, monospace;
   font-size: var(--text-sm);
   background-color: var(--color-surface-alt);
   color: var(--color-primary);
@@ -158,7 +158,7 @@ code {
 pre {
   background-color: var(--color-primary);
   color: var(--color-surface);
-  font-family: 'SFMono-Regular', consolas, 'Liberation Mono', menlo, monospace;
+  font-family: SFMono-Regular, consolas, 'Liberation Mono', menlo, monospace;
   font-size: var(--text-sm);
   line-height: 1.7;
   padding: var(--space-lg);
