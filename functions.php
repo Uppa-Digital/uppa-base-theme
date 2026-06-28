@@ -2,30 +2,24 @@
 /**
  * UPPA Base functions and definitions.
  *
- * Loads all feature files from the /inc directory.
+ * Loader only — no logic lives here directly. All feature files are required
+ * from the /inc directory. Constants are defined here so every inc/ file can
+ * reference them without re-computing the theme paths.
  *
  * @package uppa-base
  * @since   1.0.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
-define( 'UPPA_BASE_VERSION', '1.0.0' );
-define( 'UPPA_BASE_DIR', get_template_directory() );
-define( 'UPPA_BASE_URI', get_template_directory_uri() );
+define( 'UPPA_VERSION', wp_get_theme()->get( 'Version' ) );
+define( 'UPPA_DIR',     get_template_directory() );
+define( 'UPPA_URI',     get_template_directory_uri() );
 
-$uppa_base_includes = array(
-	'/inc/setup.php',
-	'/inc/enqueue.php',
-	'/inc/nav-walkers.php',
-	'/inc/template-tags.php',
-	'/inc/accessibility.php',
-	'/inc/hooks.php',
-	'/inc/compat.php',
-);
-
-foreach ( $uppa_base_includes as $file ) {
-	require_once UPPA_BASE_DIR . $file;
-}
+require UPPA_DIR . '/inc/setup.php';
+require UPPA_DIR . '/inc/enqueue.php';
+require UPPA_DIR . '/inc/nav-walkers.php';
+require UPPA_DIR . '/inc/template-tags.php';
+require UPPA_DIR . '/inc/accessibility.php';
+require UPPA_DIR . '/inc/hooks.php';
+require UPPA_DIR . '/inc/compat.php';

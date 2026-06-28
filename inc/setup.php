@@ -26,7 +26,7 @@ function uppa_base_setup() {
 	 * Translations are filed in /languages/. The text domain must match the
 	 * Theme Name slug from style.css exactly.
 	 */
-	load_theme_textdomain( 'uppa-base', UPPA_BASE_DIR . '/languages' );
+	load_theme_textdomain( 'uppa-base', UPPA_DIR . '/languages' );
 
 	/*
 	 * Let WordPress manage the document <title> tag.
