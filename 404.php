@@ -11,7 +11,7 @@ defined( 'ABSPATH' ) || exit;
 get_header();
 ?>
 
-<main id="primary" class="site-main">
+<main id="main" class="site-main">
 
 	<section class="error-404 not-found">
 
