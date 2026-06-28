@@ -125,6 +125,7 @@
   // Current / active items
   .current-menu-item > a,
   .current-menu-ancestor > a,
+  /* stylelint-disable-next-line selector-class-pattern -- WordPress-generated class */
   .current_page_item > a {
     color: var(--color-accent);
     font-weight: 700;

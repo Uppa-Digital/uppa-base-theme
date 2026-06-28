@@ -17,7 +17,7 @@
 // -----------------------------------------------------------------------------
 
 .entry-content {
-  > .wp-block-*,
+  > [class*="wp-block-"],
   > .alignwide,
   > .alignfull {
     margin-block: var(--space-xl);
@@ -156,7 +156,7 @@
 .wp-block-preformatted {
   background-color: var(--color-primary);
   color: var(--color-surface);
-  font-family: 'SFMono-Regular', consolas, 'Liberation Mono', menlo, monospace;
+  font-family: SFMono-Regular, consolas, 'Liberation Mono', menlo, monospace;
   font-size: var(--text-sm);
   line-height: 1.7;
   padding: var(--space-lg);

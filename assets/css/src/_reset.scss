@@ -34,7 +34,6 @@
 
 html {
   // Prevent font-size inflation on mobile landscape after orientation change.
-  -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 
   // Smooth scrolling — disabled for users who prefer reduced motion below.
