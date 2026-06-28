@@ -6,26 +6,44 @@
  * @since   1.0.0
  */
 
+defined( 'ABSPATH' ) || exit;
+
 get_header();
 ?>
 
 <main id="primary" class="site-main">
+
 	<?php
 	while ( have_posts() ) :
 		the_post();
+
 		get_template_part( 'template-parts/content/content', get_post_type() );
+
 		the_post_navigation(
 			array(
-				'prev_text' => '<span class="nav-subtitle">' . esc_html__( 'Previous:', 'uppa-base' ) . '</span> <span class="nav-title">%title</span>',
-				'next_text' => '<span class="nav-subtitle">' . esc_html__( 'Next:', 'uppa-base' ) . '</span> <span class="nav-title">%title</span>',
+				'prev_text' => sprintf(
+					/* translators: %s: post title */
+					'<span class="nav-subtitle">%1$s</span> <span class="nav-title">%2$s</span>',
+					esc_html__( 'Previous:', 'uppa-base' ),
+					'%title'
+				),
+				'next_text' => sprintf(
+					/* translators: %s: post title */
+					'<span class="nav-subtitle">%1$s</span> <span class="nav-title">%2$s</span>',
+					esc_html__( 'Next:', 'uppa-base' ),
+					'%title'
+				),
 			)
 		);
+
 		if ( comments_open() || get_comments_number() ) :
 			comments_template();
 		endif;
+
 	endwhile;
 	?>
-</main>
+
+</main><!-- #primary -->
 
 <?php
 get_sidebar();

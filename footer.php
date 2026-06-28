@@ -2,25 +2,31 @@
 /**
  * The footer template.
  *
- * Contains the closing of the #content div and all content after.
+ * Closes the #content wrapper opened in header.php, fires all footer action
+ * hooks, closes the page wrapper, and calls wp_footer().
+ *
+ * Hook call-sites (see inc/hooks.php for callback definitions):
+ *   uppa_before_footer()    — before <footer>
+ *   uppa_footer_widgets()   — footer widget area position
+ *   uppa_footer_credits()   — copyright / credits line
  *
  * @package uppa-base
  * @since   1.0.0
  */
+
+defined( 'ABSPATH' ) || exit;
 ?>
 
 	</div><!-- #content -->
 
-	<footer id="colophon" class="site-footer">
-		<?php get_template_part( 'template-parts/footer/footer-widgets' ); ?>
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'uppa-base' ) ); ?>">
-				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'uppa-base' ), 'WordPress' );
-				?>
-			</a>
-		</div><!-- .site-info -->
+	<?php uppa_before_footer(); ?>
+
+	<footer id="colophon" class="site-footer" role="contentinfo">
+
+		<?php uppa_footer_widgets(); ?>
+
+		<?php uppa_footer_credits(); ?>
+
 	</footer><!-- #colophon -->
 
 </div><!-- #page -->
