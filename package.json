@@ -1,0 +1,24 @@
+{
+  "name": "uppa-base",
+  "version": "1.0.0",
+  "description": "Build toolchain for UPPA Base WordPress parent theme",
+  "private": true,
+  "scripts": {
+    "build": "npm run build:css && npm run build:js",
+    "build:css": "sass assets/css/src/main.scss assets/css/dist/main.css --style=expanded --load-path=. && npm run minify:css",
+    "build:js": "esbuild assets/js/src/navigation.js assets/js/src/skip-link-focus.js --bundle=false --outdir=assets/js/dist --minify --outbase=assets/js/src",
+    "minify:css": "cleancss -o assets/css/dist/main.min.css assets/css/dist/main.css",
+    "watch": "sass --watch assets/css/src/main.scss:assets/css/dist/main.css --load-path=.",
+    "lint:css": "stylelint assets/css/src/**/*.scss",
+    "lint:js": "eslint assets/js/src/**/*.js",
+    "lint:php": "composer run lint"
+  },
+  "devDependencies": {
+    "sass": "^1.77.0",
+    "esbuild": "^0.21.0",
+    "clean-css-cli": "^5.6.3",
+    "stylelint": "^16.0.0",
+    "stylelint-config-standard-scss": "^13.0.0",
+    "eslint": "^9.0.0"
+  }
+}

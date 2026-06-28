@@ -1,0 +1,13 @@
+// =============================================================================
+// UPPA Base — Main Stylesheet Entry Point
+// =============================================================================
+// Import order matters: tokens must come first so every partial can consume
+// the custom properties they define.
+// =============================================================================
+
+@use 'tokens';
+@use 'reset';
+@use 'typography';
+@use 'layout';
+@use 'navigation';
+@use 'blocks';

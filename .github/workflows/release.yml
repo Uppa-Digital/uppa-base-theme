@@ -1,0 +1,54 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build-and-release:
+    name: Build, zip, and push to WP.org SVN
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Build assets
+        run: npm run build
+
+      - name: Create release archive
+        run: |
+          mkdir -p release
+          zip -r release/uppa-base-${{ github.ref_name }}.zip . \
+            --exclude "*.git*" \
+            --exclude "node_modules/*" \
+            --exclude "vendor/*" \
+            --exclude "assets/css/src/*" \
+            --exclude "assets/js/src/*" \
+            --exclude "release/*" \
+            --exclude "package*.json" \
+            --exclude ".nvmrc" \
+            --exclude ".editorconfig" \
+            --exclude "phpcs.xml" \
+            --exclude ".github/*"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release/uppa-base-${{ github.ref_name }}.zip
+          generate_release_notes: true
+
+      - name: Deploy to WordPress.org SVN
+        uses: 10up/action-wordpress-plugin-deploy@stable
+        env:
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SLUG: uppa-base

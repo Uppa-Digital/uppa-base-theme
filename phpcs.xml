@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<ruleset name="UPPA Base">
+	<description>PHPCS configuration for the UPPA Base WordPress parent theme.</description>
+
+	<!-- What to scan -->
+	<file>.</file>
+
+	<!-- What to ignore -->
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
+	<exclude-pattern>*/assets/*</exclude-pattern>
+
+	<!-- WordPress Coding Standards -->
+	<rule ref="WordPress">
+		<!-- Allow short array syntax -->
+		<exclude name="Universal.Arrays.DisallowShortArraySyntax"/>
+	</rule>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="uppa-base"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="uppa_base"/>
+				<element value="UPPA_BASE"/>
+				<element value="UPPA_Base"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- PHP version -->
+	<config name="testVersion" value="8.1-"/>
+
+	<!-- Show progress and use colours -->
+	<arg value="sp"/>
+	<arg name="colors"/>
+	<arg name="extensions" value="php"/>
+</ruleset>
