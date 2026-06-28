@@ -1034,6 +1034,35 @@ hr {
   order: 0;
 }
 
+.wp-caption {
+  max-width: 100%;
+  margin-block: var(--space-lg);
+}
+.wp-caption img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.wp-caption-text,
+.gallery-caption {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  text-align: center;
+  margin-block-start: var(--space-xs);
+}
+
+.sticky {
+  border-inline-start: 3px solid var(--color-accent);
+  padding-inline-start: var(--space-md);
+}
+
+.bypostauthor > .comment-body {
+  background-color: var(--color-surface-alt);
+  border-inline-start: 3px solid var(--color-accent);
+  padding: var(--space-sm) var(--space-md);
+}
+
 .wp-block-search {
   margin-block: var(--space-lg);
 }
