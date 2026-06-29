@@ -29,6 +29,11 @@ function uppa_base_setup() {
 	load_theme_textdomain( 'uppa-base', UPPA_DIR . '/languages' );
 
 	/*
+	 * Automatically add feed links to <head>.
+	 */
+	add_theme_support( 'automatic-feed-links' );
+
+	/*
 	 * Let WordPress manage the document <title> tag.
 	 * Removes the need for a <title> element in header.php.
 	 */
@@ -92,6 +97,32 @@ function uppa_base_setup() {
 	add_theme_support( 'editor-styles' );
 
 	/*
+	 * Support a custom header image / video. Child themes configure dimensions.
+	 */
+	add_theme_support(
+		'custom-header',
+		array(
+			'default-image'      => '',
+			'default-text-color' => '000000',
+			'width'              => 1920,
+			'height'             => 600,
+			'flex-width'         => true,
+			'flex-height'        => true,
+		)
+	);
+
+	/*
+	 * Support a custom background color or image.
+	 */
+	add_theme_support(
+		'custom-background',
+		array(
+			'default-color' => 'ffffff',
+			'default-image' => '',
+		)
+	);
+
+	/*
 	 * Register navigation menu locations.
 	 * Child themes can register additional locations without removing these.
 	 */
@@ -152,3 +183,31 @@ function uppa_base_widgets_init() {
 	);
 }
 add_action( 'widgets_init', 'uppa_base_widgets_init' );
+
+/**
+ * Registers additional block styles for core blocks.
+ *
+ * Child themes can register further styles or unregister these defaults via
+ * unregister_block_style( $block_name, $style_name ).
+ *
+ * @since 1.0.0
+ * @return void
+ */
+function uppa_base_register_block_styles() {
+	register_block_style(
+		'core/group',
+		array(
+			'name'  => 'boxed',
+			'label' => esc_html__( 'Boxed', 'uppa-base' ),
+		)
+	);
+
+	register_block_style(
+		'core/quote',
+		array(
+			'name'  => 'pull-quote',
+			'label' => esc_html__( 'Pull Quote', 'uppa-base' ),
+		)
+	);
+}
+add_action( 'init', 'uppa_base_register_block_styles' );

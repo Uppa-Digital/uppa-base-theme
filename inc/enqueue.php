@@ -90,6 +90,11 @@ function uppa_base_enqueue_assets() {
 	 * @hook  uppa_enqueue_scripts
 	 */
 	do_action( 'uppa_enqueue_scripts' );
+
+	// Enqueue comment-reply script only on singular posts that have comments open.
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+		wp_enqueue_script( 'comment-reply' );
+	}
 }
 add_action( 'wp_enqueue_scripts', 'uppa_base_enqueue_assets' );
 
