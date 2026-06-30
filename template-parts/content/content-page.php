@@ -38,4 +38,10 @@ defined( 'ABSPATH' ) || exit;
 		?>
 	</div><!-- .entry-content -->
 
+	<?php if ( current_user_can( 'edit_posts' ) ) : ?>
+		<footer class="entry-footer">
+			<?php uppa_base_edit_link(); ?>
+		</footer>
+	<?php endif; ?>
+
 </article><!-- #post-<?php the_ID(); ?> -->

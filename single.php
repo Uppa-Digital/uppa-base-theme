@@ -36,6 +36,8 @@ get_header();
 			)
 		);
 
+		uppa_base_author_box();
+
 		if ( comments_open() || get_comments_number() ) :
 			comments_template();
 		endif;

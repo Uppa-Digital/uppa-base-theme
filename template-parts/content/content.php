@@ -67,19 +67,23 @@ defined( 'ABSPATH' ) || exit;
 	</div><!-- .entry-content -->
 
 	<?php
-	$uppa_tags_list = get_the_tag_list( '', esc_html_x( ', ', 'list item separator', 'uppa-base' ) );
-	if ( $uppa_tags_list ) :
+	$uppa_tags_list  = get_the_tag_list( '', esc_html_x( ', ', 'list item separator', 'uppa-base' ) );
+	$uppa_has_footer = $uppa_tags_list || current_user_can( 'edit_posts' );
+	if ( $uppa_has_footer ) :
 		?>
 		<footer class="entry-footer">
-			<span class="tags-links">
-				<?php
-				printf(
-					/* translators: %s: comma-separated tag list */
-					esc_html__( 'Tagged: %s', 'uppa-base' ),
-					$uppa_tags_list // phpcs:ignore WordPress.Security.EscapeOutput -- get_the_tag_list() returns kses-filtered links
-				);
-				?>
-			</span>
+			<?php if ( $uppa_tags_list ) : ?>
+				<span class="tags-links">
+					<?php
+					printf(
+						/* translators: %s: comma-separated tag list */
+						esc_html__( 'Tagged: %s', 'uppa-base' ),
+						$uppa_tags_list // phpcs:ignore WordPress.Security.EscapeOutput -- get_the_tag_list() returns kses-filtered links
+					);
+					?>
+				</span>
+			<?php endif; ?>
+			<?php uppa_base_edit_link(); ?>
 		</footer><!-- .entry-footer -->
 	<?php endif; ?>
 

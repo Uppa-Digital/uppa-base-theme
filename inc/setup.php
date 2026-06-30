@@ -43,6 +43,17 @@ function uppa_base_setup() {
 	 * Enable support for post thumbnails (featured images) on posts and pages.
 	 */
 	add_theme_support( 'post-thumbnails' );
+	add_image_size( 'uppa-card', 800, 450, true );   // 16:9 card thumbnail
+	add_image_size( 'uppa-hero', 1920, 640, true );  // Hero / featured image
+
+	/*
+	 * Post format support. The theme provides basic output for all formats;
+	 * child themes can add richer template parts by creating content-{format}.php.
+	 */
+	add_theme_support(
+		'post-formats',
+		array( 'aside', 'gallery', 'image', 'link', 'quote', 'status', 'video', 'audio', 'chat' )
+	);
 
 	/*
 	 * Add support for a custom logo with defined display constraints.

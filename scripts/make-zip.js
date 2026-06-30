@@ -34,6 +34,10 @@ const excludes = [
 	'.nvmrc',
 	'.editorconfig',
 	'phpcs.xml',
+	'eslint.config.js',
+	'.stylelintrc.json',
+	'README.md',
+	'CHANGELOG.md',
 ].map( ( p ) => `--exclude="${ p }/*" --exclude="${ p }"` ).join( ' ' );
 
 const cmd = `cd "${ root }" && zip -r "${ zip }" . ${ excludes }`;
