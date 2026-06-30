@@ -1,32 +1,44 @@
 const globals = require( 'globals' );
 
+const sharedRules = {
+	'no-undef':           'error',
+	'no-unused-vars':     [ 'error', { argsIgnorePattern: '^_' } ],
+	'no-console':         'warn',
+	'eqeqeq':             [ 'error', 'always' ],
+	'no-var':             'error',
+	'prefer-const':       'error',
+	'object-shorthand':   'error',
+	'no-trailing-spaces': 'error',
+	'semi':               [ 'error', 'always' ],
+	'quotes':             [ 'error', 'single', { avoidEscape: true } ],
+	'indent':             [ 'error', 'tab' ],
+};
+
+const sharedGlobals = {
+	...globals.browser,
+	wp: 'readonly',
+};
+
 /** @type {import('eslint').Linter.Config[]} */
 module.exports = [
+	// Entry point uses ES module import syntax (consumed by esbuild, not the browser).
 	{
-		files: [ 'assets/js/src/**/*.js' ],
+		files: [ 'assets/js/src/main.js' ],
 		languageOptions: {
 			ecmaVersion: 2020,
-			sourceType: 'script', // Theme JS is loaded as classic scripts, not ESM.
-			globals: {
-				...globals.browser,
-				wp: 'readonly', // WordPress global exposed by wp_enqueue_script.
-			},
+			sourceType: 'module',
+			globals: sharedGlobals,
 		},
-		rules: {
-			// Errors
-			'no-undef':           'error',
-			'no-unused-vars':     [ 'error', { argsIgnorePattern: '^_' } ],
-			'no-console':         'warn',
-
-			// Match WordPress JS coding standards
-			'eqeqeq':             [ 'error', 'always' ],
-			'no-var':             'error',
-			'prefer-const':       'error',
-			'object-shorthand':   'error',
-			'no-trailing-spaces': 'error',
-			'semi':               [ 'error', 'always' ],
-			'quotes':             [ 'error', 'single', { avoidEscape: true } ],
-			'indent':             [ 'error', 'tab' ],
+		rules: sharedRules,
+	},
+	// Source modules are classic scripts loaded directly by WordPress.
+	{
+		files: [ 'assets/js/src/!(main).js' ],
+		languageOptions: {
+			ecmaVersion: 2020,
+			sourceType: 'script',
+			globals: sharedGlobals,
 		},
+		rules: sharedRules,
 	},
 ];

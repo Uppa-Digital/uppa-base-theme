@@ -240,6 +240,26 @@
   border-block-start: 1px solid var(--color-border);
   font-size: var(--text-sm);
   color: var(--color-text-muted);
+
+  .tags-links a,
+  .cat-links a {
+    display: inline-block;
+    padding: 1px var(--space-sm);
+    background-color: var(--color-surface-alt);
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    margin-inline-end: 2px;
+
+    &:hover,
+    &:focus-visible {
+      border-color: var(--color-accent);
+      color: var(--color-accent);
+      background-color: var(--color-surface);
+    }
+  }
 }
 
 // -----------------------------------------------------------------------------
@@ -390,29 +410,6 @@ article.type-page {
 
   .cat-links::before {
     content: '\1F4C2\00a0'; // folder emoji + NBSP
-  }
-}
-
-// Tag list in entry footer
-.entry-footer {
-  .tags-links a,
-  .cat-links a {
-    display: inline-block;
-    padding: 1px var(--space-sm);
-    background-color: var(--color-surface-alt);
-    border: 1px solid var(--color-border);
-    border-radius: 20px;
-    font-size: var(--text-xs);
-    color: var(--color-text-muted);
-    text-decoration: none;
-    margin-inline-end: 2px;
-
-    &:hover,
-    &:focus-visible {
-      border-color: var(--color-accent);
-      color: var(--color-accent);
-      background-color: var(--color-surface);
-    }
   }
 }
 
