@@ -193,4 +193,42 @@
 		}
 	} );
 
+	// -------------------------------------------------------------------------
+	// Sub-menu toggles (injected by UPPA_Base_Nav_Walker)
+	// Each .sub-menu-toggle button expands/collapses its sibling .sub-menu.
+	// -------------------------------------------------------------------------
+
+	if ( nav ) {
+		nav.addEventListener( 'click', function ( event ) {
+			const btn = event.target.closest( '.sub-menu-toggle' );
+			if ( ! btn ) {
+				return;
+			}
+
+			const expanded = 'true' === btn.getAttribute( 'aria-expanded' );
+			const subMenu  = btn.nextElementSibling;
+
+			btn.setAttribute( 'aria-expanded', expanded ? 'false' : 'true' );
+			btn.classList.toggle( 'is-active', ! expanded );
+
+			if ( subMenu && subMenu.classList.contains( 'sub-menu' ) ) {
+				subMenu.classList.toggle( 'is-open', ! expanded );
+			}
+		} );
+
+		// Close open sub-menus when focus leaves the nav entirely.
+		nav.addEventListener( 'focusout', function ( event ) {
+			if ( ! nav.contains( event.relatedTarget ) ) {
+				nav.querySelectorAll( '.sub-menu-toggle[aria-expanded="true"]' ).forEach( function ( btn ) {
+					btn.setAttribute( 'aria-expanded', 'false' );
+					btn.classList.remove( 'is-active' );
+					const subMenu = btn.nextElementSibling;
+					if ( subMenu ) {
+						subMenu.classList.remove( 'is-open' );
+					}
+				} );
+			}
+		} );
+	}
+
 } )();

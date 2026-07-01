@@ -25,6 +25,23 @@ defined( 'ABSPATH' ) || exit;
 
 		<?php uppa_footer_widgets(); ?>
 
+		<?php
+		if ( has_nav_menu( 'footer' ) ) :
+			wp_nav_menu(
+				array(
+					'theme_location'  => 'footer',
+					'menu_id'         => 'footer-menu',
+					'menu_class'      => 'footer-nav',
+					'container'       => 'nav',
+					'container_id'    => 'footer-navigation',
+					'container_class' => 'footer-navigation',
+					'depth'           => 1,
+					'fallback_cb'     => false,
+				)
+			);
+		endif;
+		?>
+
 		<?php uppa_footer_credits(); ?>
 
 	</footer><!-- #colophon -->
